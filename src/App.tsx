@@ -24,7 +24,7 @@ function App() {
   const [games, setGames] = useState<Game[]>([])
 
   useEffect(() => {
-    fetch('http://localhost:3333/games')
+    fetch('https://nlw-esports-server-backend.herokuapp.com/games')
       .then(response => response.json())
       .then(data => {
         setGames(data)
