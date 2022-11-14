@@ -5,9 +5,13 @@ import { GameBanner } from './components/GameBanner'
 import { CreateAdBanner } from './components/CreateAdBanner'
 import { CreateAdModal } from './components/CreateAdModal'
 
+import axios from 'axios'
+
 import './styles/main.css'
 
 import logoImg from './assets/logo-nlw-esports.svg'
+
+import { BASE_URL, LIST_GAMES } from './constants'
 
 interface Game {
   id: string
@@ -23,11 +27,9 @@ function App() {
   const [games, setGames] = useState<Game[]>([])
 
   useEffect(() => {
-    fetch('https://nlw-esports-server-backend.herokuapp.com/games')
-      .then(response => response.json())
-      .then(data => {
-        setGames(data)
-      })
+    axios(`${BASE_URL}${LIST_GAMES}`).then(response => {
+      setGames(response.data)
+    })
   }, [])
 
   return (
